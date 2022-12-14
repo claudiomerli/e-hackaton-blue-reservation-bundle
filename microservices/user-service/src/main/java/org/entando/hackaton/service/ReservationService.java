@@ -35,18 +35,33 @@ public class ReservationService {
                 findByReservationCode(reservationCode));
     }
 
+    public List<Long> getAllReservedRoomsByStartAndEndDate(Date start, Date end){
+        // TODO refactoring necessario
+        List<Long> responses = new ArrayList<>();
+        List<Reservation> allByStartDateAndEndDate =
+                reservationRepository.findAllByStartDateAndEndDate(start, end);
+        allByStartDateAndEndDate.forEach(reservation ->
+                reservation.getReservationEntry().forEach( reservationEntry ->
+                        responses.add(reservationEntry.getRoomID()))
+                );
+        return responses;
+    }
+
     public List<ReservationResponse> getAllReservationByStartAndEndDate(Date start, Date end){
         List<ReservationResponse> responses = new ArrayList<>();
         List<Reservation> allByStartDateAndEndDate =
                 reservationRepository.findAllByStartDateAndEndDate(start, end);
-        allByStartDateAndEndDate.forEach(reservation ->
-                responses.add(reservationMap.toResponse(reservation)));
+        allByStartDateAndEndDate.forEach(
+                reservation -> responses.add(
+                        reservationMap.toResponse(reservation)
+                )
+        );
         return responses;
     }
 
     public ReservationResponse editReservation (String id , ReservationRequest request) throws Exception {
         Optional<Reservation> byId = reservationRepository.findById(UUID.fromString(id));
-        if (!byId.isPresent()){
+        if (byId.isEmpty()){
             //TODO gestiore meglio l'errore
             throw new Exception("reservation id is not presente");
         }
@@ -56,5 +71,16 @@ public class ReservationService {
         reservation.setStartDate(request.getStartDate());
         reservation.setPaymentType(reservation.getPaymentType());
         return reservationMap.toResponse(reservationRepository.save(reservation));
+    }
+
+    public String deleteReservation (String id) throws Exception {
+        UUID uuid = UUID.fromString(id);
+        Optional<Reservation> byId = reservationRepository.findById(uuid);
+        if (byId.isEmpty()){
+            //TODO gestiore meglio l'errore
+            throw new Exception("reservation id is not presente");
+        }
+        reservationRepository.deleteById(uuid);
+        return "successful cancellation";
     }
 }

@@ -1,6 +1,19 @@
 {
     "microservices": [],
-    "microfrontends": [],
+    "microfrontends": [
+        {
+            "name": "research-booking",
+            "customElement": "research-booking",
+            "stack": "react",
+            "type": "widget",
+            "group": "free",
+            "publicFolder": "public",
+            "titles": {
+                "en": "research-booking",
+                "it": "research-booking"
+            }
+        }
+    ],
     "svc": [],
     "name": "reservation-bundle",
     "version": "0.0.1",

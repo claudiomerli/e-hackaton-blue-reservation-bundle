@@ -16,6 +16,6 @@ public class ReservationRequest {
     private String firstName;
     private String lastName;
     private String userEmail;
-    //TODO add dati utente
-
+    private Long roomID;
+    private Integer guestNumber;
 }

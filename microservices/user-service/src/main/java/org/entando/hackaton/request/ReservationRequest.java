@@ -3,6 +3,7 @@ package org.entando.hackaton.request;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Data
@@ -16,6 +17,6 @@ public class ReservationRequest {
     private String firstName;
     private String lastName;
     private String userEmail;
-    private Long roomID;
-    private Integer guestNumber;
+    private List<ReservationRequest> reservationRequests;
+
 }

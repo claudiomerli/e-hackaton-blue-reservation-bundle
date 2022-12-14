@@ -1,7 +1,6 @@
 package org.entando.hackaton.entity;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,12 +8,10 @@ import org.hibernate.Hibernate;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +22,7 @@ import java.util.UUID;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Entity
+@Entity(name = "reservation")
 public class Reservation {
 
     @Id
@@ -52,8 +49,7 @@ public class Reservation {
     @Column (name = "reservation_code")
     private String reservationCode;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "reservation_entry_id", referencedColumnName = "id")
+    @OneToMany(mappedBy = "reservation")
     private List<ReservationEntry> reservationEntry;
 
     //TODO

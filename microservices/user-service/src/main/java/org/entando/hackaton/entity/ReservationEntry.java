@@ -1,5 +1,6 @@
 package org.entando.hackaton.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -42,6 +45,11 @@ public class ReservationEntry {
 
     @Column(name = "guest_number")
     private Integer guestNumber;
+
+    @ManyToOne
+    @JoinColumn(name="id", nullable=false)
+    @JsonIgnore
+    private Reservation reservation;
 
     @Override
     public boolean equals(Object o) {

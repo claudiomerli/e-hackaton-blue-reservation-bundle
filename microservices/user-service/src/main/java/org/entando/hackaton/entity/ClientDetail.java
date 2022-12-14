@@ -1,6 +1,7 @@
 package org.entando.hackaton.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -46,7 +47,7 @@ public class ClientDetail {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "email")
+    @Column(name = "user_email")
     @Email(message = "Email should be valid")
     private String userEmail;
 
@@ -58,6 +59,7 @@ public class ClientDetail {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "reservation_id", referencedColumnName = "id")
+    @JsonIgnore
     private Reservation reservation;
 
     @Override

@@ -19,13 +19,14 @@ import javax.persistence.OneToMany;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Entity
+@Entity(name = "reservation")
 public class Reservation {
 
     @Id
@@ -52,9 +53,8 @@ public class Reservation {
     @Column (name = "reservation_code")
     private String reservationCode;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "reservation_entry_id", referencedColumnName = "id")
-    private List<ReservationEntry> reservationEntry;
+    @OneToMany(mappedBy = "reservation")
+    private Set<ReservationEntry> reservationEntry;
 
     //TODO
     // Potrebbe essere utile inserire invece che un char

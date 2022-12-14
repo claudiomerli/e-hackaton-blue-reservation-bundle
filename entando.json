@@ -1,0 +1,9 @@
+{
+    "microservices": [],
+    "microfrontends": [],
+    "svc": [],
+    "name": "reservation-bundle",
+    "version": "0.0.1",
+    "description": "reservation-bundle description",
+    "type": "bundle"
+}

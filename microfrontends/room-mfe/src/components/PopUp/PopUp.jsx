@@ -1,65 +1,107 @@
+import { Box, Button, Grid, Modal, TextField, Typography } from "@mui/material";
 import React from "react";
 import { useState } from "react";
-import "./PopUp.css";
 
-const PopUp = ({handleCloseModal}) => {
-    const [rooms, setRooms] = useState([])
-    const [name, setName] = useState("")
-    const [typology, setTypology] = useState("")
-    const [price, setPrice] = useState("")
-    const [guest, setGuest] = useState(1)
+const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 500,
+    bgcolor: "background.paper",
+    borderRadius: "14px",
+    boxShadow: 24,
+    p: 5,
+};
+
+const PopUp = ({ handleCloseModal, modal }) => {
+    const [rooms, setRooms] = useState([]);
+    const [name, setName] = useState("");
+    const [typology, setTypology] = useState("");
+    const [price, setPrice] = useState("");
+    const [guest, setGuest] = useState(1);
 
     const handleName = (e) => {
-        setName(e.target.value)
-    }
+        setName(e.target.value);
+    };
 
     const handleTypology = (e) => {
-        setTypology(e.target.value)
-    }
+        setTypology(e.target.value);
+    };
 
     const handlePrice = (e) => {
-        setPrice(parseInt(e.target.value))
-    }
+        setPrice(parseInt(e.target.value));
+    };
 
     const handleGuest = (e) => {
-        setGuest(parseInt(e.target.value))
-    }
+        setGuest(parseInt(e.target.value));
+    };
 
     const handleCreateRoom = () => {
-        setRooms([...rooms, {name, typology, price, guest}])
-        handleCloseModal()
-    }
+        setRooms([...rooms, { name, typology, price, guest }]);
+        handleCloseModal();
+    };
 
     return (
-        <div className="backdrop">
-            <div className="modal">
-                <h2>Creazione stanza</h2>
-                <div className="row-1">
-                    <div className="name d-flex-input">
-                        <label htmlFor="name">Nome stanza</label>
-                        <input onChange={handleName} placeholder="Nome Stanza" type="text" />
-                    </div>
-                    <div className="typology d-flex-input">
-                        <label htmlFor="typology">Tipologia</label>
-                        <input onChange={handleTypology} placeholder="Tipologia" type="text" />
-                    </div>
+        <Modal open={modal} onClose={handleCloseModal}>
+            <Box sx={style}>
+                <Typography variant="h6" component="h2">
+                    Creazione stanza
+                </Typography>
+                <Grid container spacing={2}>
+                    <Grid item xs={6}>
+                        <TextField
+                            sx={{ marginTop: "20px" }}
+                            onChange={handleName}
+                            id="outlined-basic"
+                            label="Nome stanza"
+                            variant="outlined"
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            sx={{ marginTop: "20px" }}
+                            onChange={handleTypology}
+                            id="outlined-basic"
+                            label="Tipologia"
+                            variant="outlined"
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            onChange={handlePrice}
+                            id="outlined-basic"
+                            label="Prezzo"
+                            variant="outlined"
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            onChange={handleGuest}
+                            id="outlined-basic"
+                            label="Ospiti massimi"
+                            variant="outlined"
+                        />
+                    </Grid>
+                </Grid>
+                <div
+                    style={{
+                        marginTop: "20px",
+                        display: "flex",
+                        justifyContent: "flex-end",
+                    }}>
+                    <Button variant="contained" onClick={handleCloseModal}>
+                        Chiudi
+                    </Button>
+                    <Button
+                        sx={{ marginLeft: "20px" }}
+                        variant="contained"
+                        onClick={handleCreateRoom}>
+                        Salva
+                    </Button>
                 </div>
-                <div className="row-2">
-                    <div className="price d-flex-input">
-                        <label htmlFor="price">Prezzo</label>
-                        <input onChange={handlePrice} placeholder="Prezzo" type="number" />
-                    </div>
-                    <div className="guest d-flex-input">
-                        <label htmlFor="guest">Ospiti massimi</label>
-                        <input onChange={handleGuest} type="number" min="1" max="5" defaultValue="1" />
-                    </div>
-                </div>
-                <div className="button">
-                    <button onClick={handleCloseModal}>Chiudi</button>
-                    <button onClick={handleCreateRoom}>Salva</button>
-                </div>
-            </div>
-        </div>
+            </Box>
+        </Modal>
     );
 };
 

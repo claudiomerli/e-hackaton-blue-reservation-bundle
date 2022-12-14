@@ -1,37 +1,77 @@
-import React from 'react'
+import { Box, Button, Grid, Modal, TextField, Typography } from "@mui/material";
+import React from "react";
 
-const PopUpEdit = ({handleCloseEditModal}) => {
-  return (
-    <div className="backdrop">
-            <div className="modal">
-                <h2>Modifica stanza</h2>
-                <div className="row-1">
-                    <div className="name d-flex-input">
-                        <label htmlFor="name">Nome stanza</label>
-                        <input placeholder="Nome Stanza" type="text" />
-                    </div>
-                    <div className="typology d-flex-input">
-                        <label htmlFor="typology">Tipologia</label>
-                        <input placeholder="Tipologia" type="text" />
-                    </div>
-                </div>
-                <div className="row-2">
-                    <div className="price d-flex-input">
-                        <label htmlFor="price">Prezzo</label>
-                        <input placeholder="Prezzo" type="number" />
-                    </div>
-                    <div className="guest d-flex-input">
-                        <label htmlFor="guest">Ospiti massimi</label>
-                        <input type="number" min="1" max="5" defaultValue="1" />
-                    </div>
-                </div>
-                <div className="button">
-                    <button onClick={handleCloseEditModal}>Chiudi</button>
-                    <button>Salva</button>
-                </div>
-            </div>
-        </div>
-  )
-}
+const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 500,
+    bgcolor: "background.paper",
+    borderRadius: "14px",
+    boxShadow: 24,
+    p: 5,
+};
 
-export default PopUpEdit
+const PopUpEdit = ({ editModal, handleCloseEditModal, data }) => {
+    return (
+        <Modal open={editModal} onClose={handleCloseEditModal}>
+            <Box sx={style}>
+                <Typography variant="h6" component="h2">
+                    Modifica stanza
+                </Typography>
+                <Grid container spacing={2}>
+                    <Grid item xs={6}>
+                        <TextField
+                            sx={{ marginTop: "20px" }}
+                            id="outlined-basic"
+                            label="Nome stanza"
+                            variant="outlined"
+                            defaultValue={data.nome}
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            sx={{ marginTop: "20px" }}
+                            id="outlined-basic"
+                            label="Tipologia"
+                            variant="outlined"
+                            defaultValue={data.tipologia}
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            id="outlined-basic"
+                            label="Prezzo"
+                            variant="outlined"
+                            defaultValue={data.prezzo}
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            id="outlined-basic"
+                            label="Ospiti massimi"
+                            variant="outlined"
+                            defaultValue={data.ospiti}
+                        />
+                    </Grid>
+                </Grid>
+                <div
+                    style={{
+                        marginTop: "20px",
+                        display: "flex",
+                        justifyContent: "flex-end",
+                    }}>
+                    <Button variant="contained" onClick={handleCloseEditModal}>
+                        Chiudi
+                    </Button>
+                    <Button sx={{ marginLeft: "20px" }} variant="contained">
+                        Salva
+                    </Button>
+                </div>
+            </Box>
+        </Modal>
+    );
+};
+
+export default PopUpEdit;

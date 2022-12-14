@@ -45,6 +45,9 @@ public class Reservation {
     @Column(name = "payment_type")
     private String paymentType;
 
+    @Column (name = "reservation_code")
+    private String reservationCode;
+
     //TODO
     // Potrebbe essere utile inserire invece che un char
     // un enum ed eseguire azioni in base al enum

@@ -17,6 +17,6 @@ public class ReservationRequest {
     private String firstName;
     private String lastName;
     private String userEmail;
-    private List<ReservationRequest> reservationRequests;
+    private List<ReservationEntryRequest> reservationRequests;
 
 }

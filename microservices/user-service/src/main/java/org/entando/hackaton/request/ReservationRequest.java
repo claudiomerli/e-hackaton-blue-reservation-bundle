@@ -13,4 +13,9 @@ public class ReservationRequest {
     private String paymentType;
     private String reservationCode;
 
+    private String firstName;
+    private String lastName;
+    private String userEmail;
+    //TODO add dati utente
+
 }

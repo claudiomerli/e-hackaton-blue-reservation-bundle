@@ -38,7 +38,7 @@ public class ReservationEntry {
     private UUID id;
 
     @Column(name = "room_id")
-    private String  roomID;
+    private Long  roomID;
 
     @Column(name = "guest_number")
     private Integer guestNumber;

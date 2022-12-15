@@ -25,6 +25,18 @@
                 "en": "research-booking",
                 "it": "research-booking"
             }
+        },
+        {
+            "name": "reservation-calendar",
+            "customElement": "reservation-calendar",
+            "stack": "react",
+            "type": "widget",
+            "group": "free",
+            "publicFolder": "public",
+            "titles": {
+                "en": "reservation-calendar",
+                "it": "reservation-calendar"
+            }
         }
     ],
     "svc": [

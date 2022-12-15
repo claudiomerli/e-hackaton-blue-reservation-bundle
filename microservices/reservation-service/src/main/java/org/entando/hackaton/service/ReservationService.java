@@ -8,6 +8,7 @@ import org.entando.hackaton.response.ReservationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -80,6 +81,7 @@ public class ReservationService {
         return reservationMap.toResponse(reservationRepository.save(reservation));
     }
 
+    @Transactional
     public void deleteReservation(String code) throws Exception {
         reservationRepository.deleteByReservationCode(code);
     }

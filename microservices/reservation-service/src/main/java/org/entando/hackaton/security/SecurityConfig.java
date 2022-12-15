@@ -24,7 +24,7 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = false)
 public class SecurityConfig {
 
     @Value("${spring.security.oauth2.client.provider.oidc.issuer-uri}")

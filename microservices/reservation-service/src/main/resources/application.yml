@@ -1,6 +1,6 @@
 logging:
   level:
-    ROOT: DEBUG
+    ROOT: INFO
 server:
   port: 8081
 spring:
@@ -19,7 +19,7 @@ spring:
       client:
         provider:
           oidc:
-            issuer-uri: http://localhost:9080/auth/realms/entando-dev
+            issuer-uri: http://entando-hackaton-team-blue.apps.ocp4.eng-entando.com/auth/realms/entando
         registration:
           oidc:
-            client-id: web_app
+            client-id: my-app

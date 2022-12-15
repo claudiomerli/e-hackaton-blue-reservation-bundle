@@ -2,6 +2,7 @@ package org.entando.hackaton.request;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +18,6 @@ public class ReservationRequest {
     private String firstName;
     private String lastName;
     private String userEmail;
-    private List<ReservationEntryRequest> reservationRequests;
+    private List<ReservationEntryRequest> reservationRequests = new ArrayList<>();
 
 }

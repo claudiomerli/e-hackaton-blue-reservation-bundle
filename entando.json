@@ -15,23 +15,16 @@
     ],
     "microfrontends": [
         {
-            "name": "react-material-mfe",
-            "customElement": "react-material-mfe",
+            "name": "research-booking",
+            "customElement": "research-booking",
             "stack": "react",
             "type": "widget",
             "group": "free",
             "publicFolder": "public",
             "titles": {
-                "en": "react-material-mfe",
-                "it": "react-material-mfe"
-            },
-            "apiClaims": [
-                {
-                    "name": "intApi",
-                    "type": "internal",
-                    "serviceName": "user-service"
-                }
-            ]
+                "en": "research-booking",
+                "it": "research-booking"
+            }
         }
     ],
     "svc": [
@@ -50,8 +43,8 @@
             }
         ]
     },
-    "name": "entando-hackathon",
+    "name": "reservation",
     "version": "0.0.2",
-    "description": "entando-hackathon description",
+    "description": "reservation description",
     "type": "bundle"
 }

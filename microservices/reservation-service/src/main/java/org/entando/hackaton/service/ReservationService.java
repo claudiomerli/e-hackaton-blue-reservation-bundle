@@ -8,6 +8,7 @@ import org.entando.hackaton.response.ReservationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,37 +21,43 @@ public class ReservationService {
     private final ReservationRepository reservationRepository;
 
     private final ReservationMap reservationMap = new ReservationMap();
+
     @Autowired
     public ReservationService(ReservationRepository reservationRepository) {
         this.reservationRepository = reservationRepository;
     }
 
-    public ReservationResponse createReservation (ReservationRequest request) {
+    public ReservationResponse createReservation(ReservationRequest request) {
         return reservationMap.toResponse(
                 reservationRepository.save(reservationMap.toDTO(request)));
     }
 
-    public ReservationResponse getReservationByReservationCode (String reservationCode){
+    public ReservationResponse getReservationByReservationCode(String reservationCode) {
         return reservationMap.toResponse(reservationRepository.
                 findByReservationCode(reservationCode));
     }
 
-    public List<Long> getAllReservedRoomsByStartAndEndDate(Date start, Date end){
+    public List<Long> getAllReservedRoomsByStartAndEndDate(Date start, Date end) {
         // TODO refactoring necessario
         List<Long> responses = new ArrayList<>();
-        List<Reservation> allByStartDateAndEndDate =
-                reservationRepository.findAllByStartDateAndEndDate(start, end);
+        List<Reservation> allByStartDateAndEndDate = this.reservationRepository.findAll((root, query, criteriaBuilder) -> criteriaBuilder.or(
+                criteriaBuilder.between(root.get("startDate"), start, end),
+                criteriaBuilder.between(root.get("endDate"), start, end)
+        ));
+
         allByStartDateAndEndDate.forEach(reservation ->
-                reservation.getReservationEntry().forEach( reservationEntry ->
+                reservation.getReservationEntry().forEach(reservationEntry ->
                         responses.add(reservationEntry.getRoomID()))
-                );
+        );
         return responses;
     }
 
-    public List<ReservationResponse> getAllReservationByStartAndEndDate(Date start, Date end){
+    public List<ReservationResponse> getAllReservationByStartAndEndDate(Date start, Date end) {
         List<ReservationResponse> responses = new ArrayList<>();
-        List<Reservation> allByStartDateAndEndDate =
-                reservationRepository.findAllByStartDateAndEndDate(start, end);
+        List<Reservation> allByStartDateAndEndDate = this.reservationRepository.findAll((root, query, criteriaBuilder) -> criteriaBuilder.or(
+                criteriaBuilder.between(root.get("startDate"), start, end),
+                criteriaBuilder.between(root.get("endDate"), start, end)
+        ));
         allByStartDateAndEndDate.forEach(
                 reservation -> responses.add(
                         reservationMap.toResponse(reservation)
@@ -59,9 +66,9 @@ public class ReservationService {
         return responses;
     }
 
-    public ReservationResponse editReservation (String id , ReservationRequest request) throws Exception {
+    public ReservationResponse editReservation(String id, ReservationRequest request) throws Exception {
         Optional<Reservation> byId = reservationRepository.findById(UUID.fromString(id));
-        if (byId.isEmpty()){
+        if (byId.isEmpty()) {
             //TODO gestiore meglio l'errore
             throw new Exception("reservation id is not presente");
         }
@@ -73,10 +80,10 @@ public class ReservationService {
         return reservationMap.toResponse(reservationRepository.save(reservation));
     }
 
-    public String deleteReservation (String id) throws Exception {
+    public String deleteReservation(String id) throws Exception {
         UUID uuid = UUID.fromString(id);
         Optional<Reservation> byId = reservationRepository.findById(uuid);
-        if (byId.isEmpty()){
+        if (byId.isEmpty()) {
             //TODO gestiore meglio l'errore
             throw new Exception("reservation id is not presente");
         }

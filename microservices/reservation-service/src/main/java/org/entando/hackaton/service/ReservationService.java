@@ -8,6 +8,7 @@ import org.entando.hackaton.response.ReservationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,7 +37,7 @@ public class ReservationService {
                 findByReservationCode(reservationCode));
     }
 
-    public List<Long> getAllReservedRoomsByStartAndEndDate(Date start, Date end) {
+    public List<Long> getAllReservedRoomsByStartAndEndDate(LocalDate start, LocalDate end) {
         // TODO refactoring necessario
         List<Long> responses = new ArrayList<>();
         List<Reservation> allByStartDateAndEndDate = this.reservationRepository.findAll((root, query, criteriaBuilder) -> criteriaBuilder.or(
@@ -51,7 +52,7 @@ public class ReservationService {
         return responses;
     }
 
-    public List<ReservationResponse> getAllReservationByStartAndEndDate(Date start, Date end) {
+    public List<ReservationResponse> getAllReservationByStartAndEndDate(LocalDate start, LocalDate end) {
         List<ReservationResponse> responses = new ArrayList<>();
         List<Reservation> allByStartDateAndEndDate = this.reservationRepository.findAll((root, query, criteriaBuilder) -> criteriaBuilder.or(
                 criteriaBuilder.between(root.get("startDate"), start, end),

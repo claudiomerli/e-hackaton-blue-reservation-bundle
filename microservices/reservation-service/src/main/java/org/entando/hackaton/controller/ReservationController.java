@@ -30,16 +30,12 @@ public class ReservationController {
 
     @PostMapping("/searchRoomByDates")
     public List<Long> getAllReservedRoomsByStartAndEndDate (@RequestBody DateRequest request){
-        return reservationService.getAllReservedRoomsByStartAndEndDate(
-                UtilsDate.convertStringToDate(request.getStartDate()),
-                UtilsDate.convertStringToDate(request.getEndDate()));
+        return reservationService.getAllReservedRoomsByStartAndEndDate(request.getStartDate(),request.getEndDate());
     }
 
     @PostMapping("/searchReservationByDates")
     public List<ReservationResponse> getAllReservetionByStartAndEndDate (@RequestBody DateRequest request){
-        return reservationService.getAllReservationByStartAndEndDate(
-                UtilsDate.convertStringToDate(request.getStartDate()),
-                UtilsDate.convertStringToDate(request.getEndDate()));
+        return reservationService.getAllReservationByStartAndEndDate(request.getStartDate(),request.getEndDate());
     }
 
 

@@ -9,6 +9,7 @@ spring:
     username: entando-hackaton-user
     password: entando-hackaton-password
   jpa:
+    show-sql: true
     hibernate:
       ddl-auto: update
       naming:
@@ -23,3 +24,4 @@ spring:
         registration:
           oidc:
             client-id: my-app
+

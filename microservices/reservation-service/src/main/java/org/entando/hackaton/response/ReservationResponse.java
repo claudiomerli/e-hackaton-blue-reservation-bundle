@@ -3,6 +3,7 @@ package org.entando.hackaton.response;
 import lombok.Data;
 import org.entando.hackaton.request.ReservationEntryRequest;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -11,8 +12,8 @@ import java.util.UUID;
 public class ReservationResponse {
 
     private UUID id;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String paymentType;
     private String reservationCode;
 

@@ -2,6 +2,7 @@ package org.entando.hackaton.request;
 
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,8 +11,8 @@ import java.util.List;
 @Data
 public class ReservationRequest {
 
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String paymentType;
     private String reservationCode;
 

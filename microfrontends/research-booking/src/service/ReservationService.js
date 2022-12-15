@@ -1,22 +1,20 @@
+import axios from "axios";
+
 export const getAvailableRoomsByDate = ({startDate, endDate}) => {
-    return Promise
-        .resolve()
-        .then(() => {
-            return [
-                {roomId: 1, roomTipology: "LUXURY", name: "Room 1", price: 70.50, capacity: 3},
-                {roomId: 2, roomTipology: "ECONOMY", name: "Room 2", price: 70.50, capacity: 2},
-                {roomId: 3, roomTipology: "SUITE", name: "Room 3", price: 70.50, capacity: 4},
-                {roomId: 4, roomTipology: "ECONOMY", name: "Room 4", price: 70.50, capacity: 2},
-            ]
-        })
+    return axios.post("http://entando-hackaton-team-blue.apps.ocp4.eng-entando.com/room-bundle-395270a6/room-service/api/freeRooms", {
+        startDate: startDate.format("YYYY-MM-DD"),
+        endDate: endDate.format("YYYY-MM-DD")
+    }).then((result) => {
+        return result.data
+    })
 }
 
-export const reserve = ({reservationRequest}) => {
-    return Promise
-        .resolve()
-        .then(() => {
+export const reserve = (reservationRequest) => {
+    return axios
+        .post("http://entando-hackaton-team-blue.apps.ocp4.eng-entando.com/room-bundle-395270a6/room-service/api/reservation", reservationRequest)
+        .then((res) => {
             return {
-                reservationCode: "123456677899"
+                reservationCode: res.data.reservationCode
             }
         })
 }

@@ -38,13 +38,13 @@ export default function RoomList() {
         if (availableRooms)
             setReservationData({
                 ...reservationData,
-                reservationRequests: availableRooms.map((room) => {
+                reservationRequests: availableRooms ? availableRooms.map((room) => {
                     return {
-                        roomId: room.id,
+                        roomId: room.roomId,
                         price: room.price,
                         guestNumber: 0
                     }
-                })
+                }) : []
             })
     }, [availableRooms])
 
@@ -54,6 +54,7 @@ export default function RoomList() {
 
     const fetchAvailableRooms = () => {
         getAvailableRoomsByDate(searchFilter).then(availableRooms => {
+            console.log(availableRooms)
             setAvailableRooms(availableRooms)
         })
     }
@@ -71,12 +72,25 @@ export default function RoomList() {
 
     const isFormValid = () => {
         return reservationData.firstname != "" &&
-            reservationData.lastname != "" &&
+            reservationData.lastname !== "" &&
             reservationData.email != ""
     }
 
     const sendReservation = () => {
-        reserve(reservationData)
+        reserve({
+            startDate: searchFilter.startDate.format("YYYY-MM-DD"),
+            endDate: searchFilter.endDate.format("YYYY-MM-DD"),
+            paymentType: reservationData.paymentType,
+            firstName: reservationData.firstname,
+            lastName:reservationData.lastname,
+            userEmail: reservationData.email,
+            reservationRequests: reservationData.reservationRequests.map((rd)=>{
+                return {
+                    roomID: rd.roomId,
+                    guestNumber: rd.guestNumber
+                }
+            })
+        })
             .then(reservationResponse => {
                 setReservationModalOpen(false)
                 setReservationCode(reservationResponse.reservationCode)

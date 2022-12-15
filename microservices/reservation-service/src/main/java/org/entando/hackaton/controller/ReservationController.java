@@ -12,10 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/reservation")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin
 public class ReservationController {
 
-    //TODO gestire meglio gli errori
+
     private final ReservationService reservationService;
 
     @Autowired
@@ -23,7 +23,7 @@ public class ReservationController {
         this.reservationService = reservationService;
     }
 
-    @PostMapping()
+    @PostMapping
     public ReservationResponse createReservation (@RequestBody ReservationRequest request){
         return reservationService.createReservation(request);
     }

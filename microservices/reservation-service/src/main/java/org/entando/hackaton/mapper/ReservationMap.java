@@ -27,7 +27,7 @@ public class ReservationMap {
         reservation.setReservationCode(getReservationCode());
         request.getReservationRequests().forEach(
                 reservationEntryRequest ->
-                        reservationEntry.add(toDto(reservationEntryRequest))
+                        reservationEntry.add(toDto(reservationEntryRequest,reservation))
         );
         reservation.setReservationEntry(reservationEntry);
         return reservation;
@@ -61,10 +61,11 @@ public class ReservationMap {
     }
 
 
-    private ReservationEntry toDto (ReservationEntryRequest request) {
+    private ReservationEntry toDto (ReservationEntryRequest request, Reservation reservation) {
         ReservationEntry reservationEntry = new ReservationEntry();
         reservationEntry.setRoomID(request.getRoomID());
         reservationEntry.setGuestNumber(request.getGuestNumber());
+        reservationEntry.setReservation(reservation);
         return reservationEntry;
     }
 

@@ -47,7 +47,7 @@ public class ReservationEntry {
     private Integer guestNumber;
 
     @ManyToOne
-    @JoinColumn(name="id", nullable=false)
+    @JoinColumn(name="id", nullable=false , insertable = false , updatable = false)
     @JsonIgnore
     private Reservation reservation;
 

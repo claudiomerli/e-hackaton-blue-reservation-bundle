@@ -1,6 +1,6 @@
 logging:
   level:
-    ROOT: INFO
+    ROOT: DEBUG
 server:
   port: 8081
 spring:

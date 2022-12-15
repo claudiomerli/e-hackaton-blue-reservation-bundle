@@ -23,19 +23,9 @@ import java.util.UUID;
 public class Reservation {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator",
-            parameters = {
-                    @Parameter(
-                            name = "uuid_gen_strategy_class",
-                            value = "org.hibernate.id.uuid.CustomVersionOneStrategy"
-                    )
-            }
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
+    private Long id;
     @Column(name = "start_date")
     private LocalDate startDate;
     @Column(name = "end_date")
@@ -46,7 +36,7 @@ public class Reservation {
     @Column (name = "reservation_code")
     private String reservationCode;
 
-    @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ReservationEntry> reservationEntry;
 
     //TODO

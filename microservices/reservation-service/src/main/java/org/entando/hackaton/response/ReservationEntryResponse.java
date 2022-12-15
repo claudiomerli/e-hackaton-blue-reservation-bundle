@@ -7,7 +7,7 @@ import java.util.UUID;
 @Data
 public class ReservationEntryResponse {
 
-    private UUID id;
+    private Long id;
     private Long  roomID;
     private Integer guestNumber;
 }

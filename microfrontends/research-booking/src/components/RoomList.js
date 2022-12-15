@@ -52,6 +52,11 @@ export default function RoomList() {
         fetchAvailableRooms()
     }, [])
 
+    useEffect(() => {
+        fetchAvailableRooms()
+    }, [searchFilter])
+
+
     const fetchAvailableRooms = () => {
         getAvailableRoomsByDate(searchFilter).then(availableRooms => {
             console.log(availableRooms)

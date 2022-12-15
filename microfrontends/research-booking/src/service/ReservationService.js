@@ -11,7 +11,7 @@ export const getAvailableRoomsByDate = ({startDate, endDate}) => {
 
 export const reserve = (reservationRequest) => {
     return axios
-        .post("http://entando-hackaton-team-blue.apps.ocp4.eng-entando.com/room-bundle-395270a6/room-service/api/reservation", reservationRequest)
+        .post("http://entando-hackaton-team-blue.apps.ocp4.eng-entando.com/reservation-68536bf2/reservation-service/api/reservation", reservationRequest)
         .then((res) => {
             return {
                 reservationCode: res.data.reservationCode
@@ -19,7 +19,7 @@ export const reserve = (reservationRequest) => {
         })
 }
 
-export const deleteReservation = (reservationId) => {
-    return Promise
-        .resolve()
+export const deleteReservation = (reservationCode) =>{
+    return axios.delete("http://entando-hackaton-team-blue.apps.ocp4.eng-entando.com/reservation-68536bf2/reservation-service/api/reservation/delete/" + reservationCode)
 }
+

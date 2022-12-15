@@ -34,7 +34,7 @@ public class ReservationService {
 
     public ReservationResponse getReservationByReservationCode(String reservationCode) {
         return reservationMap.toResponse(reservationRepository.
-                findByReservationCode(reservationCode));
+                findByReservationCode(reservationCode).orElseThrow());
     }
 
     public List<Long> getAllReservedRoomsByStartAndEndDate(LocalDate start, LocalDate end) {
@@ -80,14 +80,7 @@ public class ReservationService {
         return reservationMap.toResponse(reservationRepository.save(reservation));
     }
 
-    public String deleteReservation(String id) throws Exception {
-        UUID uuid = UUID.fromString(id);
-        Optional<Reservation> byId = reservationRepository.findById(uuid);
-        if (byId.isEmpty()) {
-            //TODO gestiore meglio l'errore
-            throw new Exception("reservation id is not presente");
-        }
-        reservationRepository.deleteById(uuid);
-        return "successful cancellation";
+    public void deleteReservation(String code) throws Exception {
+        reservationRepository.deleteByReservationCode(code);
     }
 }

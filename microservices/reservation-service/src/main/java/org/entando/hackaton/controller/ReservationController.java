@@ -46,7 +46,7 @@ public class ReservationController {
     }
 
     @DeleteMapping("/delete/{reservationID}")
-    public String delete (@PathVariable String reservationID) throws Exception {
-        return reservationService.deleteReservation(reservationID);
+    public void delete (@PathVariable String reservationID) throws Exception {
+        reservationService.deleteReservation(reservationID);
     }
 }

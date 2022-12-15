@@ -54,11 +54,6 @@ export default function SearchFilter() {
                         />
                     </Box>
                     <Box sx={{mx: 3}}>
-                        <Button variant="outlined" color={"success"}>
-                            <SearchIcon/> Ricerca
-                        </Button>
-                    </Box>
-                    <Box sx={{mx: 3}}>
                         <Button variant="outlined" color={"error"} onClick={() => setDeleteReservationModal(true)}>
                             <DeleteIcon/> Elimina una prenotazione
                         </Button>

@@ -7,10 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface ReservationRepository extends JpaRepository <Reservation , UUID>, JpaSpecificationExecutor<Reservation> {
-    Reservation findByReservationCode (String reservationCode);
-    List<Reservation> findAllByStartDateAndEndDate (Date start , Date end);
+    Optional<Reservation> findByReservationCode (String reservationCode);
+    void deleteByReservationCode(String reservationCode);
 }

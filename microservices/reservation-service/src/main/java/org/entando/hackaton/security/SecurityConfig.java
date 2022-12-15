@@ -39,7 +39,7 @@ public class SecurityConfig {
                 .cors()
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
-                        .mvcMatchers("/api/**").authenticated()
+                        //.mvcMatchers("/api/**").authenticated()
                         .anyRequest().permitAll()
                 )
                 .oauth2ResourceServer().jwt()

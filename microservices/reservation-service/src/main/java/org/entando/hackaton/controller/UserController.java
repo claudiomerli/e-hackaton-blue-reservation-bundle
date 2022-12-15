@@ -24,19 +24,19 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/timestamp")
-    @PreAuthorize("hasAnyAuthority('user-service-role')")
+    @PreAuthorize("hasAnyAuthority('reservation-service-role')")
     public @ResponseBody Map<String, String> timestamp() {
         return Map.of("timestamp", new Date().toString());
     }
 
     @GetMapping("/users")
-    @PreAuthorize("hasAnyAuthority('user-service-role')")
+    @PreAuthorize("hasAnyAuthority('reservation-service-role')")
     public @ResponseBody List<User> getUsers() {
         return userService.getAllUsers();
     }
 
     @PostMapping("/users")
-    @PreAuthorize("hasAnyAuthority('user-service-role')")
+    @PreAuthorize("hasAnyAuthority('reservation-service-role')")
     public @ResponseBody User createUser(@RequestBody User user) {
         return userService.createUser(user);
     }

@@ -30,7 +30,7 @@
       "realmRoles": ["offline_access", "uma_authorization"],
       "clientRoles": {
         "account": ["view-profile", "manage-account"],
-        "web_app": ["user-service-role"]
+        "web_app": ["reservation-service-role"]
       },
       "notBefore": 0,
       "groups": ["/Users", "/Admins"]
@@ -64,7 +64,7 @@
       "realmRoles": ["offline_access", "uma_authorization"],
       "clientRoles": {
         "account": ["view-profile", "manage-account"],
-        "web_app": ["user-service-role"]
+        "web_app": ["reservation-service-role"]
       },
       "notBefore": 0,
       "groups": ["/Users"]

@@ -1,14 +1,14 @@
 {
     "microservices": [
         {
-            "name": "user-service",
+            "name": "reservation-service",
             "stack": "spring-boot",
             "healthCheckPath": "/health",
             "commands": {
                 "run": "mvn spring-boot:run"
             },
             "roles": [
-                "user-service-role"
+                "reservation-service-role"
             ],
             "dbms": "mysql"
         }

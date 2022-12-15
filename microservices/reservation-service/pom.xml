@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.entando.hackaton</groupId>
-	<artifactId>user-service</artifactId>
+	<artifactId>reservation-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>user-service</name>
+	<name>reservation-service</name>
 	<description>User Service</description>
 	<properties>
 		<java.version>11</java.version>
@@ -60,7 +60,7 @@
 	</dependencies>
 
 	<build>
-	    <finalName>user-service</finalName>
+	    <finalName>reservation-service</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

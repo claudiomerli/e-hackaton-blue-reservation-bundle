@@ -7,9 +7,6 @@
             "commands": {
                 "run": "mvn spring-boot:run"
             },
-            "roles": [
-                "reservation-service-role"
-            ],
             "dbms": "mysql"
         }
     ],
@@ -56,7 +53,7 @@
         ]
     },
     "name": "reservation",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "reservation description",
     "type": "bundle"
 }

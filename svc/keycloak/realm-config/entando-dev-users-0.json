@@ -29,8 +29,7 @@
       "requiredActions": [],
       "realmRoles": ["offline_access", "uma_authorization"],
       "clientRoles": {
-        "account": ["view-profile", "manage-account"],
-        "web_app": ["reservation-service-role"]
+        "account": ["view-profile", "manage-account"]
       },
       "notBefore": 0,
       "groups": ["/Users", "/Admins"]
@@ -63,8 +62,7 @@
       "requiredActions": [],
       "realmRoles": ["offline_access", "uma_authorization"],
       "clientRoles": {
-        "account": ["view-profile", "manage-account"],
-        "web_app": ["reservation-service-role"]
+        "account": ["view-profile", "manage-account"]
       },
       "notBefore": 0,
       "groups": ["/Users"]

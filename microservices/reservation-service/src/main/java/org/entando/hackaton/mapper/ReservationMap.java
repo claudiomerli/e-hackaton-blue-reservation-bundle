@@ -18,9 +18,10 @@ public class ReservationMap {
     int rightLimit = 122; // letter 'z'
     int targetStringLength = 10;
     Random random = new Random();
-    public Reservation toDTO (ReservationRequest request) {
+    public Reservation toEntity(ReservationRequest request) {
         Reservation reservation = new Reservation();
         List<ReservationEntry> reservationEntry = new ArrayList<>();
+
         reservation.setEndDate(request.getEndDate());
         reservation.setStartDate(request.getStartDate());
         reservation.setPaymentType(request.getPaymentType());

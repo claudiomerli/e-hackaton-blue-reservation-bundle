@@ -8,7 +8,6 @@ import org.entando.hackaton.response.ReservationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,7 +28,7 @@ public class ReservationService {
 
     public ReservationResponse createReservation(ReservationRequest request) {
         return reservationMap.toResponse(
-                reservationRepository.save(reservationMap.toDTO(request)));
+                reservationRepository.save(reservationMap.toEntity(request)));
     }
 
     public ReservationResponse getReservationByReservationCode(String reservationCode) {

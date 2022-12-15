@@ -43,8 +43,8 @@
             }
         ]
     },
-    "name": "entando-hackathon",
+    "name": "reservation",
     "version": "0.0.2",
-    "description": "entando-hackathon description",
+    "description": "reservation description",
     "type": "bundle"
 }

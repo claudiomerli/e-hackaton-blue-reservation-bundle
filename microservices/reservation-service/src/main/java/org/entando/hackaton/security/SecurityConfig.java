@@ -24,7 +24,7 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-//@EnableGlobalMethodSecurity(prePostEnabled = false)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
     @Value("${spring.security.oauth2.client.provider.oidc.issuer-uri}")
@@ -39,7 +39,7 @@ public class SecurityConfig {
                 .cors()
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
-                        //.mvcMatchers("/api/**").authenticated()
+                        .mvcMatchers("/api/**").authenticated()
                         .anyRequest().permitAll()
                 )
                 .oauth2ResourceServer().jwt()
